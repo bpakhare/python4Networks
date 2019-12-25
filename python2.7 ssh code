@@ -1,0 +1,40 @@
+import paramiko
+import time
+ssh=paramiko.SSHClient()
+
+ip_address = "192.168.129.128"
+#username = "bpakhare"
+password = "1234"
+
+ssh_client = paramiko.SSHClient()
+ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh_client.connect(hostname=ip_address,password=password)
+
+print ("Successful connection")
+
+remote_connection = ssh_client.invoke_shell()
+
+remote_connection.send("ls \n")
+
+
+#for n in range (2,21):
+#    print "Creating VLAN " + str(n)
+#    remote_connection.send("vlan " + str(n) +  "\n")
+#    remote_connection.send("name Python_VLAN " + str(n) +  "\n")
+#    time.sleep(0.5)
+
+#remote_connection.send("dmz google.com")
+#stdin, stdout, stderr =ssh.exec_command('ls') 
+time.sleep(5)
+output = remote_connection.recv(65535)
+#output=stdout.readlines()
+#print stdout.readlines()
+print(output)
+#print stdout.read()
+
+#ssh.invoke_shell()
+#stdin, stdout, stderr = ssh.exec_command (command)
+#print(stdout.read())
+
+
+ssh_client.close 
