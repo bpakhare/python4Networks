@@ -1,0 +1,22 @@
+from netmiko import Netmiko
+from getpass import getpass
+from netmiko import ConnectHandler
+
+#host = input("Enter host to connect to: ")
+host = "192.168.129.128"
+username = raw_input('Username: ')
+password = getpass()
+#username = username()
+
+device = {
+    'host': host,
+    'username': username,
+    'password': password,
+    'device_type': 'autodetect',
+}
+
+command = 'ls'
+net_connect = Netmiko(**device)
+output = net_connect.send_command(command)
+print(output)
+net_connect.disconnect()
