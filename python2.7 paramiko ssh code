@@ -3,7 +3,7 @@ import time
 ssh=paramiko.SSHClient()
 
 ip_address = "192.168.129.128"
-#username = "bpakhare"
+#username = "username"
 password = "1234"
 
 ssh_client = paramiko.SSHClient()
