@@ -1,0 +1,21 @@
+
+from netmiko import Netmiko
+from getpass import getpass
+from netmiko.linux import LinuxSSH
+
+cisco1 = {
+    "host": "192.168.129.128",
+    "username": "testbhus",  #username is very important, don't miss , otherwise errors, will modify in the next iteration
+    "password": getpass(),
+    "device_type": "linux",
+}
+
+net_connect = Netmiko(**cisco1)
+command = "ls"
+
+#print()
+print(net_connect.find_prompt())
+output = net_connect.send_command(command)
+net_connect.disconnect()
+print(output)
+#print()
