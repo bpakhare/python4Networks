@@ -1,0 +1,19 @@
+from netmiko import ConnectHandler
+import getpass
+
+passwd = getpass.getpass("Please enter password: ")
+
+linux = {
+        'device_type': 'linux',
+        'ip': 'test.rebex.net',
+        'username': 'demo',
+        'password': passwd,
+        'port': 22,
+        'verbose':True
+        }
+
+connection = ConnectHandler(**linux)
+output = connection.send_command('hostname')
+
+print(output)
+connection.disconnect()
